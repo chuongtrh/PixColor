@@ -38,8 +38,6 @@
 		4CC01C061F5303FE006BE6EE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4CC01BD41F5303FE006BE6EE /* GoogleService-Info.plist */; };
 		4CC01C081F5303FE006BE6EE /* pixcolor-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4CC01BD81F5303FE006BE6EE /* pixcolor-Info.plist */; };
 		4CC01C091F5303FE006BE6EE /* UIOutlinedLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC01BDB1F5303FE006BE6EE /* UIOutlinedLabel.swift */; };
-		4CC01C0A1F5303FE006BE6EE /* YPMagnifyingGlass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC01BDD1F5303FE006BE6EE /* YPMagnifyingGlass.swift */; };
-		4CC01C0B1F5303FE006BE6EE /* YPMagnifyingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC01BDE1F5303FE006BE6EE /* YPMagnifyingView.swift */; };
 		4CC01C0C1F5303FE006BE6EE /* CustomInfiniteIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC01BE01F5303FE006BE6EE /* CustomInfiniteIndicator.swift */; };
 		4CC01C0D1F5303FE006BE6EE /* FocusIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC01BE11F5303FE006BE6EE /* FocusIndicatorView.swift */; };
 		4CC01C0E1F5303FE006BE6EE /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC01BE31F5303FE006BE6EE /* CameraViewController.swift */; };
@@ -88,8 +86,6 @@
 		4CC01BD61F5303FE006BE6EE /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		4CC01BD81F5303FE006BE6EE /* pixcolor-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "pixcolor-Info.plist"; sourceTree = "<group>"; };
 		4CC01BDB1F5303FE006BE6EE /* UIOutlinedLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIOutlinedLabel.swift; sourceTree = "<group>"; };
-		4CC01BDD1F5303FE006BE6EE /* YPMagnifyingGlass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YPMagnifyingGlass.swift; sourceTree = "<group>"; };
-		4CC01BDE1F5303FE006BE6EE /* YPMagnifyingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YPMagnifyingView.swift; sourceTree = "<group>"; };
 		4CC01BE01F5303FE006BE6EE /* CustomInfiniteIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomInfiniteIndicator.swift; sourceTree = "<group>"; };
 		4CC01BE11F5303FE006BE6EE /* FocusIndicatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FocusIndicatorView.swift; sourceTree = "<group>"; };
 		4CC01BE31F5303FE006BE6EE /* CameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
@@ -240,7 +236,6 @@
 			isa = PBXGroup;
 			children = (
 				4CC01BDA1F5303FE006BE6EE /* UIOutlinedLabel */,
-				4CC01BDC1F5303FE006BE6EE /* YPMagnifyingGlass */,
 			);
 			path = vendors;
 			sourceTree = "<group>";
@@ -251,15 +246,6 @@
 				4CC01BDB1F5303FE006BE6EE /* UIOutlinedLabel.swift */,
 			);
 			path = UIOutlinedLabel;
-			sourceTree = "<group>";
-		};
-		4CC01BDC1F5303FE006BE6EE /* YPMagnifyingGlass */ = {
-			isa = PBXGroup;
-			children = (
-				4CC01BDD1F5303FE006BE6EE /* YPMagnifyingGlass.swift */,
-				4CC01BDE1F5303FE006BE6EE /* YPMagnifyingView.swift */,
-			);
-			path = YPMagnifyingGlass;
 			sourceTree = "<group>";
 		};
 		4CC01BDF1F5303FE006BE6EE /* view */ = {
@@ -472,7 +458,6 @@
 				4CC01C091F5303FE006BE6EE /* UIOutlinedLabel.swift in Sources */,
 				4CC01C0D1F5303FE006BE6EE /* FocusIndicatorView.swift in Sources */,
 				4CC01C101F5303FE006BE6EE /* MainPageViewController.swift in Sources */,
-				4CC01C0A1F5303FE006BE6EE /* YPMagnifyingGlass.swift in Sources */,
 				4CC01BEF1F5303FE006BE6EE /* PhotoCardCell.swift in Sources */,
 				4CC01C051F5303FE006BE6EE /* Contanst.swift in Sources */,
 				4CC01BF21F5303FE006BE6EE /* CMSampleBuffer.swift in Sources */,
@@ -481,7 +466,6 @@
 				4CC01C121F5303FE006BE6EE /* PantoneViewController.swift in Sources */,
 				4CC01BF01F5303FE006BE6EE /* ShimmerPhotoCardCell.swift in Sources */,
 				4CC01C0E1F5303FE006BE6EE /* CameraViewController.swift in Sources */,
-				4CC01C0B1F5303FE006BE6EE /* YPMagnifyingView.swift in Sources */,
 				4CC01BF11F5303FE006BE6EE /* CGPoint.swift in Sources */,
 				4CC01C111F5303FE006BE6EE /* MainViewController.swift in Sources */,
 				4CC01C031F5303FE006BE6EE /* ConstService.swift in Sources */,
