@@ -17,12 +17,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     //MARK - Application life cyclie
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    private func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
         window?.backgroundColor = background_color
         
-        let cache:PINCache = PINRemoteImageManager.shared().cache as PINCache
+        let cache:PINCache = PINRemoteImageManager.shared().cache as! PINCache
         cache.memoryCache.costLimit = UInt(600 * 600 * 100 * UIScreen.main.scale)
         // ~50 MB
         cache.diskCache.byteLimit = 100 * 1024 * 1024
@@ -57,7 +57,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     //MAKR: -
-    func application(_ app: UIApplication, open url: URL, _ options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
+    func application(_ app: UIApplication, open url: URL, _ options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
         return true
     }
     func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {

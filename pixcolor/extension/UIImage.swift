@@ -54,7 +54,7 @@ extension UIImage {
         return UIColor(red: r, green: g, blue: b, alpha: a)
     }
     
-    func areaAverage() -> UIColor {
+    /*func areaAverage() -> UIColor {
         var bitmap = [UInt8](repeating: 0, count: 4)
         
         if #available(iOS 9.0, *) {
@@ -112,7 +112,7 @@ extension UIImage {
         // Compute result.
         let result = UIColor(red: CGFloat(bitmap[0]) / 255.0, green: CGFloat(bitmap[1]) / 255.0, blue: CGFloat(bitmap[2]) / 255.0, alpha: CGFloat(bitmap[3]) / 255.0)
         return result
-    }
+    }*/
     
     
     func averageColor(pos:CGPoint, deta:CGFloat) -> UIColor {
@@ -151,7 +151,7 @@ extension UIImage {
             return nil
         }
         
-        if self.imageOrientation == UIImageOrientation.up {
+        if self.imageOrientation == UIImage.Orientation.up {
             return self
         }
         

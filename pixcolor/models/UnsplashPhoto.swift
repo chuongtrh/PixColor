@@ -10,13 +10,13 @@ import UIKit
 
 class UnsplashPhoto: NSObject {
     
+    var id:String = ""
     var photoID:String = ""
     var urlThumb:String = ""
     var urlRegular:String = ""
     var urlSmall:String = ""
     var ownerName:String = ""
-    
-    
+
     init(json:AnyObject){
         super.init()
         updateWithJson(json: json)
@@ -28,7 +28,7 @@ class UnsplashPhoto: NSObject {
             self.photoID = photoID
         }
         
-        if let urls = json["urls"] as? AnyObject {
+        if let urls = json["urls"] as? [String: Any] {
             if let urlThumb = urls["thumb"] as? String  {
                 self.urlThumb = urlThumb
             }
@@ -40,7 +40,7 @@ class UnsplashPhoto: NSObject {
             }
         }
         
-        if let user = json["user"] as? AnyObject {
+        if let user = json["user"] as? [String: Any] {
             if let ownerName = user["name"] as? String  {
                 self.ownerName = ownerName
             }

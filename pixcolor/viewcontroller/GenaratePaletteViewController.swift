@@ -8,7 +8,7 @@
 
 import UIKit
 import UIImageColors
-import ChameleonFramework
+//import ChameleonFramework
 
 class GenaratePaletteViewController: UIViewController {
 
@@ -29,7 +29,7 @@ class GenaratePaletteViewController: UIViewController {
     @IBOutlet weak var lbColor4:UIOutlinedLabel!
     @IBOutlet weak var lbColor5:UIOutlinedLabel!
 
-    //var colors : UIImageColors?
+//    var colors : UIImageColors?
     
     var flatColor:Bool = false
     
@@ -63,20 +63,37 @@ class GenaratePaletteViewController: UIViewController {
         activityIndicator.startAnimating()
         
         DispatchQueue.global(qos: .userInitiated).async {
-            let colors:[UIColor] = ColorsFromImage(self.imageSource, withFlatScheme: flat)
-            if colors.count > 0 {
+            let colors = self.imageSource.getColors()
+
+//            let colors:[UIColor] = ColorsFromImage(self.imageSource, withFlatScheme: flat)
+            if (colors != nil) {
                 DispatchQueue.main.async {
-                    self.colorView1.backgroundColor = colors[0]
-                    self.colorView2.backgroundColor = colors[1]
-                    self.colorView3.backgroundColor = colors[2]
-                    self.colorView4.backgroundColor = colors[3]
-                    self.colorView5.backgroundColor = colors[4]
-                    
-                    self.lbColor1.text = colors[0].toHexString()
-                    self.lbColor2.text = colors[1].toHexString()
-                    self.lbColor3.text = colors[2].toHexString()
-                    self.lbColor4.text = colors[3].toHexString()
-                    self.lbColor5.text = colors[4].toHexString()
+                    let background = colors?.background
+                    let primary = colors?.primary
+                    let secondary = colors?.secondary
+                    let detail = colors?.detail
+
+                    self.colorView1.backgroundColor = background
+                    self.colorView2.backgroundColor = primary
+                    self.colorView3.backgroundColor = secondary
+                    self.colorView4.backgroundColor = detail
+
+                    self.lbColor1.text = background?.toHexString()
+                    self.lbColor2.text = primary?.toHexString()
+                    self.lbColor3.text = secondary?.toHexString()
+                    self.lbColor4.text = detail?.toHexString()
+
+//                    self.colorView1.backgroundColor = colors[0]
+//                    self.colorView2.backgroundColor = colors[1]
+//                    self.colorView3.backgroundColor = colors[2]
+//                    self.colorView4.backgroundColor = colors[3]
+//                    self.colorView5.backgroundColor = colors[4]
+//
+//                    self.lbColor1.text = colors[0].toHexString()
+//                    self.lbColor2.text = colors[1].toHexString()
+//                    self.lbColor3.text = colors[2].toHexString()
+//                    self.lbColor4.text = colors[3].toHexString()
+//                    self.lbColor5.text = colors[4].toHexString()
                     
                     self.activityIndicator.stopAnimating()
                     self.stackView.isHidden = false

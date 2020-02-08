@@ -49,14 +49,16 @@ class CameraViewController: UIViewController {
         super.viewWillAppear(animated)
         
         let nextLevel = NextLevel.shared
-        if nextLevel.authorizationStatus(forMediaType: AVMediaTypeVideo) == .authorized  {
+        if NextLevel.authorizationStatus(forMediaType: AVMediaType.video) == .authorized  {
             do {
                 try nextLevel.start()
             } catch {
                 print("NextLevel, failed to start camera session")
             }
         } else {
-            nextLevel.requestAuthorization(forMediaType: AVMediaTypeVideo)
+            NextLevel.requestAuthorization(forMediaType: AVMediaType.video, completionHandler: {_,_ in
+                
+            })
         }
     }
 
@@ -169,18 +171,17 @@ class CameraViewController: UIViewController {
             preview?.addSubview(focusView)
             focusView.startAnimation()
         }
-        let adjustedPoint = NextLevel.shared.previewLayer.captureDevicePointOfInterest(for: tapPoint)
+        let adjustedPoint = NextLevel.shared.previewLayer.captureDevicePointConverted(fromLayerPoint: tapPoint)
         NextLevel.shared.focusExposeAndAdjustWhiteBalance(atAdjustedPoint: adjustedPoint)
     }
     
     @IBAction func onSelectPhoto(_ sender:AnyObject) {
         let imagePickerController = UIImagePickerController()
         imagePickerController.delegate = self
-        imagePickerController.sourceType = UIImagePickerControllerSourceType.savedPhotosAlbum
+        imagePickerController.sourceType = UIImagePickerController.SourceType.savedPhotosAlbum
         imagePickerController.allowsEditing = true
-        self.present(imagePickerController, animated: true, completion: { complete in
-            
-        })
+        self.present(imagePickerController, animated: true) {
+        }
     }
     
     
@@ -188,7 +189,7 @@ class CameraViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ShowGenaratePaletteViewControllerIdentifier" {
             let vc:GenaratePaletteViewController = segue.destination as! GenaratePaletteViewController
-            vc.imageSource = sender as! UIImage
+            vc.imageSource = sender as? UIImage
         }
     }
 }
@@ -201,7 +202,7 @@ extension CameraViewController: NextLevelDelegate {
     // permission
     func nextLevel(_ nextLevel: NextLevel, didUpdateAuthorizationStatus status: NextLevelAuthorizationStatus, forMediaType mediaType: String) {
         print("NextLevel, authorization updated for media \(mediaType) status \(status)")
-        if nextLevel.authorizationStatus(forMediaType: AVMediaTypeVideo) == .authorized {
+        if NextLevel.authorizationStatus(forMediaType: AVMediaType.video) == .authorized {
             do {
                 try nextLevel.start()
             } catch {
@@ -213,10 +214,10 @@ extension CameraViewController: NextLevelDelegate {
             
             let alert = UIAlertController(title: "Notice!!",
                                           message: "Application is need to access camera phone. Go to Setting",
-                                          preferredStyle: UIAlertControllerStyle.alert)
+                                          preferredStyle: UIAlertController.Style.alert)
             
             let cancelAction = UIAlertAction(title: "Ok", style: .default, handler: { (_) in
-                guard let settingsUrl = URL(string: UIApplicationOpenSettingsURLString) else {
+                guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else {
                     return
                 }
                 
@@ -277,6 +278,10 @@ extension CameraViewController: NextLevelDelegate {
 }
 
 extension CameraViewController: NextLevelDeviceDelegate {
+    func nextLevel(_ nextLevel: NextLevel, didChangeLensPosition lensPosition: Float) {
+        
+    }
+    
     
     // position, orientation
     func nextLevelDevicePositionWillChange(_ nextLevel: NextLevel) {
@@ -289,7 +294,7 @@ extension CameraViewController: NextLevelDeviceDelegate {
     }
     
     // format
-    func nextLevel(_ nextLevel: NextLevel, didChangeDeviceFormat deviceFormat: AVCaptureDeviceFormat) {
+    func nextLevel(_ nextLevel: NextLevel, didChangeDeviceFormat deviceFormat: AVCaptureDevice.Format) {
     }
     
     // aperture
@@ -351,6 +356,10 @@ extension CameraViewController: NextLevelFlashAndTorchDelegate {
 // MARK: - NextLevelPhotoDelegate
 
 extension CameraViewController: NextLevelPhotoDelegate {
+    func nextLevel(_ nextLevel: NextLevel, didFinishProcessingPhoto photo: AVCapturePhoto) {
+    
+    }
+    
     
     // photo
     func nextLevel(_ nextLevel: NextLevel, willCapturePhotoWithConfiguration photoConfiguration: NextLevelPhotoConfiguration) {
@@ -402,9 +411,9 @@ extension CameraViewController {
 }
 
 extension CameraViewController : AVCapturePhotoCaptureDelegate {
-    func capture(_ captureOutput: AVCapturePhotoOutput,
-                 didFinishProcessingPhotoSampleBuffer photoSampleBuffer: CMSampleBuffer?,
-                 previewPhotoSampleBuffer: CMSampleBuffer?,
+    func photoOutput(_ captureOutput: AVCapturePhotoOutput,
+                     didFinishProcessingPhoto photoSampleBuffer: CMSampleBuffer?,
+                     previewPhoto previewPhotoSampleBuffer: CMSampleBuffer?,
                  resolvedSettings: AVCaptureResolvedPhotoSettings,
                  bracketSettings: AVCaptureBracketedStillImageSettings?,
                  error: Error?) {
@@ -433,12 +442,12 @@ extension CameraViewController : AVCapturePhotoCaptureDelegate {
 //MARK: UIImagePickerControllerDelegate
 extension CameraViewController : UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+    private func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         
         self.dismiss(animated: false, completion: { () -> Void in
         })
         
-        if let pickedImage = info[UIImagePickerControllerEditedImage] as? UIImage {
+        if let pickedImage = info[UIImagePickerController.InfoKey.editedImage.rawValue] as? UIImage {
             self.performSegue(withIdentifier: "ShowGenaratePaletteViewControllerIdentifier", sender: pickedImage)
         }
     }

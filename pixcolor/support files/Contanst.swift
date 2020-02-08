@@ -9,9 +9,9 @@
 import Foundation
 import UIColor_Hex_Swift
 
-let drak_color:UIColor = UIColor(hexString: "4A4A4A")!
-let gray_color:UIColor = UIColor(hexString: "F6F5F5")!
-let background_color:UIColor = UIColor(hexString: "f3f3f3")!
+let drak_color:UIColor = UIColor("4A4A4A")
+let gray_color:UIColor = UIColor("F6F5F5")
+let background_color:UIColor = UIColor("f3f3f3")
 
 func font_regular(size:CGFloat)->UIFont!{
     return UIFont(name: "HelveticaNeue", size: size)

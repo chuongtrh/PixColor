@@ -57,8 +57,8 @@ class PhotoCardCell: UITableViewCell {
         imgCover.pin_setImage(from: URL(string: photo.urlRegular)!)
 
         let attString = NSMutableAttributedString()
-        attString.append(NSAttributedString(string: "Photo by ", attributes: [NSForegroundColorAttributeName:UIColor.black,NSFontAttributeName:font_regular(size: 13)]))
-        attString.append(NSAttributedString(string: photo.ownerName, attributes: [NSForegroundColorAttributeName:UIColor.black,NSFontAttributeName:font_medium(size: 13)]))
+        attString.append(NSAttributedString(string: "Photo by ", attributes: [NSAttributedString.Key.foregroundColor:UIColor.black,NSAttributedString.Key.font:font_regular(size: 13)]))
+        attString.append(NSAttributedString(string: photo.ownerName, attributes: [NSAttributedString.Key.foregroundColor:UIColor.black,NSAttributedString.Key.font:font_medium(size: 13)]))
         lableOwner.attributedText = attString
     }
     
